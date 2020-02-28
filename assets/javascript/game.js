@@ -14,6 +14,12 @@ var question2 = {
 var questionArray = [question1, question2];
 var questionNumber = 0;
 var currentQuestion;
+var numCorrect = 0;
+var numIncorrect = 0;
+var numUnanswered = 0;
+var answeredCorrectly = false;
+var $this;
+var correctAnswer;
 
 // function that creates the questions + buttons for each question
 function createQuestions () {
@@ -26,20 +32,39 @@ function createQuestions () {
     for (var i = 0; i < currentQuestion.answerChoices.length; i++) {
         var newButton = $("<button>");
         newButton.addClass("answerChoice");
+        newButton.attr("id", currentQuestion.answerChoices[i]);
         newButton.attr("value", i);
         newButton.text(currentQuestion.answerChoices[i]);
         $("#answer-choices").append(newButton);
     }
+    correctAnswer = currentQuestion.answerChoices[currentQuestion.correctAnswer];
 }
 
 createQuestions();
 
-$(".answerChoice").on("click", function(event) {
-    if ($(this).val() === currentQuestion.correctAnswer) {
+$(".answerChoice").on("click", function() {
+    $this = $(this);
+    console.log(correctAnswer);
+    if ($this.val() === currentQuestion.correctAnswer) {
         console.log("correct");
+        numCorrect++;
+        answeredCorrectly = true;
+        
     }
     else {
         console.log("incorrect");
+        numIncorrect++;
     }
-    
+    displayResults();
 })
+
+function displayResults () {
+    if (answeredCorrectly) {
+        $("#results-container").text("You answered " + correctAnswer);
+    }
+    else {
+        $("#results-container").text("You answered " + $this.attr("id") + ", but the correct answer is " + correctAnswer);
+    }
+    $("#question-container").hide();
+}
+
