@@ -18,6 +18,7 @@ var numCorrect = 0;
 var numIncorrect = 0;
 var numUnanswered = 0;
 var answeredCorrectly = false;
+var outOfTime = false;
 var $this;
 var correctAnswer;
 
@@ -66,5 +67,24 @@ function displayResults () {
         $("#results-container").text("You answered " + $this.attr("id") + ", but the correct answer is " + correctAnswer);
     }
     $("#question-container").hide();
+}
+
+// function outOfTime() {
+//     $("#results-container").text("You ran out of time! The correct answer is " + correctAnswer);
+// }
+
+var secondsLeft = 3;
+var timerId = setInterval(countdown, 1000);
+
+function countdown() {
+    if (secondsLeft === -1) {
+        clearTimeout(timerId);
+        $("#timer-container").hide();
+        $("#question-container").hide();
+        $("#results-container").text("You ran out of time! The correct answer is " + correctAnswer);
+    } else {
+        $("#timer-container").html(secondsLeft + ' seconds left');
+        secondsLeft--;
+    }
 }
 
