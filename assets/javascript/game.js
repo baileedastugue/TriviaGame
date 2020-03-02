@@ -50,7 +50,8 @@ function createQuestions () {
     $("#answer-choices").empty();
     for (var i = 0; i < currentQuestion.answerChoices.length; i++) {
         var newButton = $("<button>");
-        newButton.addClass("answerChoice");
+        newButton.addClass("answerChoice btn btn-lg btn-block");
+        newButton.attr("type", "button");
         newButton.attr("id", currentQuestion.answerChoices[i]);
         newButton.attr("value", i);
         newButton.text(currentQuestion.answerChoices[i]);
@@ -126,11 +127,12 @@ $("#nextQuestion-btn").on("click", function () {
 function gameOver () {
     $("#userResults").show().empty().append("Answered correctly: " + numCorrect + 
             "<br>Answered incorrectly: " + numIncorrect + "<br>Unanswered questions: " + numUnanswered)
-    restartGame()
+    restartGame();
 }
 
 function restartGame () {
     $("#restart-btn").show();
+    $("#nextQuestion-btn").hide();
 }
 
 // restart game after restart button has been clicked
