@@ -3,23 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Billy Joel Trivia</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+    <div id="openingScreen">
+        <p>Think you're in the top 1% of Billy Joel listeners? Click 'start' to test your trivia knowledge!<br>
+        Answer quickly though, you only have 20 seconds per question to prove your Piano Man saavy.</p>
+        <button id="startGame-btn">Start Game</button>
+    </div>
     <div id="results-container">
-
+        <div id="userResults"></div>
+        <button id=nextQuestion-btn>Next Question</button>
+        <button id=restart-btn>Restart Game</button>
     </div>
     <div id="question-container">
-        <div id="timer-container">
-            30 seconds left!
-        </div>
-        <div id="full-question">
-
-        </div>
-        <div id="answer-choices">
-
-        </div>
+        <!-- <div id="timer-container"> -->
+            <!-- 30 seconds left! -->
+        <!-- </div> -->
+        <div id="full-question"></div>
+        <div id="answer-choices"></div>
     </div>
 </body>
 <script type="text/javascript" src="assets/javascript/game.js"></script>
