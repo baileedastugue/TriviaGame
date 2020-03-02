@@ -35,8 +35,12 @@ var numCorrect = 0;
 var numIncorrect = 0;
 var numUnanswered = 0;
 var answeredCorrectly = false;
+var questionAnswered = false;
 var $this;
 var correctAnswer;
+var outOfTime = false;
+var timeleft = 10;
+var timerID = setInterval(countingDown, 1000);
 
 // function that creates the questions + buttons for each question
 function createQuestions () {
@@ -58,7 +62,22 @@ function createQuestions () {
         $("#answer-choices").append(newButton);
     }
     correctAnswer = currentQuestion.answerChoices[currentQuestion.correctAnswer];
+
 }
+    
+function countingDown (){
+    $("#timer-container").empty();
+    if(timeleft <= 0){
+        clearInterval(timerID);
+        $("#timer-container").html("Finished");
+        outOfTime = true;
+        displayResults();
+    } else {
+        $("#timer-container").html(timeleft + " seconds remaining");
+    }
+    timeleft -= 1;
+    };
+
 
 function openingScreen() {
     $("#results-container, #question-container").hide();
@@ -79,6 +98,7 @@ function gameStart () {
 }
 
 $("#answer-choices").on("click", ".answerChoice", function () {
+    questionAnswered = true;
     $this = $(this);
     if ($this.attr("id") == correctAnswer) {
         numCorrect++;
@@ -88,19 +108,19 @@ $("#answer-choices").on("click", ".answerChoice", function () {
         numIncorrect++;
     }
     displayResults();
+    timeleft = 10;
 })
 
 function displayResults () {
     $("#results-container").show();
     $("#userResults").empty();
-    console.log(numCorrect, numIncorrect)
     if (answeredCorrectly) {
         $("#userResults").text("You answered " + correctAnswer);
     }
-    // else if (outOfTime) {
-    //     $("#timer-container").hide();
-    //     $("#userResults").text("You ran out of time! The correct answer is " + correctAnswer);
-    // }
+    else if (outOfTime) {
+        $("#timer-container").hide();
+        $("#userResults").text("You ran out of time! The correct answer is " + correctAnswer);
+    }
     else {
         $("#userResults").text("You answered " + $this.attr("id") + ", but the correct answer is " + correctAnswer);
     }
