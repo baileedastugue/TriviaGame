@@ -112,11 +112,13 @@ function countingDown (){
 
 // notifies the user whether they answered correctly, incorrectly, or ran out of time
 function displayResults () {
+    $("#incorrect, #correct").hide();
     if (gameStarted && !displayingResults) {
         $("#results-container, #timer-container").show();
         $("#userResults").empty().show();
         if (answeredCorrectly) {
             $("#userResults").text("You answered " + correctAnswer);
+            $("#correct").show();
         }
         else if (outOfTime) {
             $("#timer-container").hide();
@@ -124,6 +126,7 @@ function displayResults () {
         }
         else {
             $("#userResults").text("You answered " + $this.attr("id") + ", but the correct answer is " + correctAnswer);
+            $("#incorrect").show();
         }
         $("#question-container").hide();
         $("#nextQuestion-btn").show();
@@ -178,6 +181,7 @@ $("#nextQuestion-btn").on("click", function () {
     if (questionNumber == 4) {
         displayingResults = true;
         gameOver();
+        $("#incorrect, #correct").hide();
     }
     else {
         nextQuestion();
