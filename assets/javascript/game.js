@@ -36,6 +36,7 @@ var answeredCorrectly = false;
 var questionAnswered = false;
 var gameStarted = false;
 var outOfTime = false;
+var displayingResults = false;
 
 // global variables
 var questionNumber = 0;
@@ -47,6 +48,7 @@ var timerID = setInterval(countingDown, 1000);
 var currentQuestion;
 var $this;
 var correctAnswer;
+var progessWidth = 0;
 
 // displays rules, prompts user to begin play
 function openingScreen() {
@@ -60,12 +62,16 @@ function openingScreen() {
 function gameStart () {
     $("#openingScreen, #restart-btn").hide();
     $("#finalResults").empty().hide();
+    progessWidth = 0;
+    $(".progress-bar").css({"width": progessWidth +"%"});
     questionNumber = 0;
+    progessWidth = 0;
     numCorrect = 0;
     numIncorrect = 0;
     numUnanswered = 0;
     createQuestions();
     gameStarted = true;
+    displayingResults = false;
     timeleft = 10;
 }
 
@@ -106,7 +112,7 @@ function countingDown (){
 
 // notifies the user whether they answered correctly, incorrectly, or ran out of time
 function displayResults () {
-    if (gameStarted) {
+    if (gameStarted && !displayingResults) {
         $("#results-container, #timer-container").show();
         $("#userResults").empty().show();
         if (answeredCorrectly) {
@@ -127,6 +133,8 @@ function displayResults () {
 // goes to next question
 function nextQuestion () {
     questionNumber++;
+    progessWidth += 20;
+    $(".progress-bar").css({"width": progessWidth +"%"});
     $("#results-container").hide();
     $("#question-container").show();
 }
@@ -168,6 +176,7 @@ $("#answer-choices").on("click", ".answerChoice", function () {
 $("#nextQuestion-btn").on("click", function () {
     console.log(questionNumber);
     if (questionNumber == 4) {
+        displayingResults = true;
         gameOver();
     }
     else {
