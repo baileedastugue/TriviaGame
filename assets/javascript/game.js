@@ -43,7 +43,7 @@ var questionNumber = 0;
 var numCorrect = 0;
 var numIncorrect = 0;
 var numUnanswered = 0;
-var timeleft = 10;
+var timeleft = 20;
 var timerID = setInterval(countingDown, 1000);
 var currentQuestion;
 var $this;
@@ -72,7 +72,7 @@ function gameStart () {
     createQuestions();
     gameStarted = true;
     displayingResults = false;
-    timeleft = 10;
+    timeleft = 20;
 }
 
 // function that creates the questions + buttons for each question
@@ -87,7 +87,7 @@ function createQuestions () {
     $("#answer-choices").empty();
     for (var i = 0; i < currentQuestion.answerChoices.length; i++) {
         var newButton = $("<button>");
-        newButton.addClass("answerChoice btn btn-lg btn-block");
+        newButton.addClass("answerChoice btn btn-lg btn-block btn-outline-danger");
         newButton.attr("type", "button");
         newButton.attr("id", currentQuestion.answerChoices[i]);
         newButton.attr("value", i);
@@ -169,7 +169,7 @@ $("#answer-choices").on("click", ".answerChoice", function () {
         numIncorrect++;
     }
     displayResults();
-    timeleft = 10;
+    timeleft = 20;
 })
 
 // moves on to the next question after user input

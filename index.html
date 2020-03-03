@@ -21,22 +21,23 @@
                     <div id="openingScreen" class="jumbotron">
                         <h1 class="display-4">The Trivia Game!</h1>
                         <p>Think you're in the top 1% of Billy Joel listeners? Click 'start' to test your trivia knowledge!<br>
-                        Answer quickly though, you only have 20 seconds per question to prove your Piano Man saavy.</p>
-                        <button id="startGame-btn">Start Game</button>
+                        Answer quickly though, you only have 20 seconds per question to prove you're Piano Man saavy.</p>
+                        <button id="startGame-btn" class="btn btn-lg btn-block btn-danger">Start Game</button>
                     </div>
                     <div id="results-container">
                         <div id="userResults"></div>
                         <div id="finalResults"></div>
-                        <button id=nextQuestion-btn>Next Question</button>
-                        <button id=restart-btn>Restart Game</button>
+                        <button id="nextQuestion-btn" class="btn btn-lg btn-block btn-dark">Next Question</button>
+                        <button id="restart-btn" class="btn btn-lg btn-block btn-danger">Restart Game</button>
                     </div>
                     <div id="question-container">
-                        <div id="timer-container"></div>
+                        <div id="timer-container"></div><br>
+                        
+                        <div id="full-question"></div><br>
+                        <div id="answer-choices"></div><br>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 0%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <div id="full-question"></div>
-                        <div id="answer-choices"></div>
                     </div>
                 </div>
             </div>
