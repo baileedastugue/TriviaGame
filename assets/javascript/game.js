@@ -1,31 +1,36 @@
 var question1 = {
     fullQuestion: "What was Billy Joel's first album?",
     answerChoices: ["Cold Spring Harbor", "Turnstiles", "Piano Man", "An Innocent Man"],
-    correctAnswer: 0
+    correctAnswer: 0,
+    forResults: '"https://www.youtube.com/embed/T2zjVszdiXA"'
 }
 
 var question2 = {
     fullQuestion: "Which character did Joel voice in the animated film Oliver & Company",
     answerChoices: ["Oliver", "Tito", "Dodger", "Einstein"],
-    correctAnswer: 2
+    correctAnswer: 2,
+    forResults: '"https://www.youtube.com/embed/Jb7kJ-j_dKA?start=30"'
 }
 
 var question3 = {
     fullQuestion: "What song is not on Joel's The Stranger album?",
     answerChoices:['"Scenes from an Italian Restaurant"', '"Only the Good Die Young"', '"You May Be Right"', '"Just the Way You Are"'],
-    correctAnswer: 2
+    correctAnswer: 2,
+    forResults: '"https://www.youtube.com/embed/Jo9t5XK0FhA"'
 }
 
 var question4 = {
     fullQuestion: 'What song is Joel referring to in the following quote: "I had a suspicion that was going to be the last time I was going to be able to hit those notes, so why not go out in a blaze of glory?"',
     answerChoices: ['"Uptown Girl"', '"An Innocent Man"', '"All About Soul"', '"Allentown"'],
-    correctAnswer: 1
+    correctAnswer: 1,
+    forResults: '"https://www.youtube.com/embed/cf0s-YfTpw4"'
 }
 
 var question5 = {
     fullQuestion: "Who did Joel see on the Ed Sullivan show and then decide to pursue a career in music?",
     answerChoices: ["The Beatles", "The Drifters", "The Four Seasons", "Sam & Dave"],
-    correctAnswer: 0
+    correctAnswer: 0, 
+    forResults: '"https://www.youtube.com/embed/jenWdylTtzs"'
 }
 
 // array that holds the question objects
@@ -130,6 +135,7 @@ function displayResults () {
         }
         $("#question-container").hide();
         $("#nextQuestion-btn").show();
+        $("#userResults").append('<br><iframe width="560" height="315" src=' + questionArray[questionNumber].forResults + 'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
     }
 }
 
