@@ -28,20 +28,46 @@ var question5 = {
     correctAnswer: 0
 }
 
+// array that holds the question objects
 var questionArray = [question1, question2, question3, question4, question5];
-var questionNumber = 0;
-var currentQuestion;
-var numCorrect = 0;
-var numIncorrect = 0;
-var numUnanswered = 0;
+
+// booleans to direct game play flow
 var answeredCorrectly = false;
 var questionAnswered = false;
 var gameStarted = false;
-var $this;
-var correctAnswer;
 var outOfTime = false;
+
+// global variables
+var questionNumber = 0;
+var numCorrect = 0;
+var numIncorrect = 0;
+var numUnanswered = 0;
 var timeleft = 10;
 var timerID = setInterval(countingDown, 1000);
+var currentQuestion;
+var $this;
+var correctAnswer;
+
+// displays rules, prompts user to begin play
+function openingScreen() {
+    $("#results-container, #question-container").hide();
+    $("#startGame-btn").on("click", function () {
+        gameStart();
+    })
+}
+
+// sets game up, starts questions at 0, clears results
+function gameStart () {
+    $("#openingScreen, #restart-btn").hide();
+    $("#finalResults").empty().hide();
+    questionNumber = 0;
+    numCorrect = 0;
+    numIncorrect = 0;
+    numUnanswered = 0;
+    createQuestions();
+    gameStarted = true;
+    timeleft = 10;
+}
 
 // function that creates the questions + buttons for each question
 function createQuestions () {
@@ -63,14 +89,13 @@ function createQuestions () {
         $("#answer-choices").append(newButton);
     }
     correctAnswer = currentQuestion.answerChoices[currentQuestion.correctAnswer];
-
 }
-    
+
+// displays time remaining on page, determines whether user answered within the time limit
 function countingDown (){
     $("#timer-container").empty();
     if(timeleft <= 0){
         clearInterval(timerID);
-        $("#timer-container").html("Finished");
         outOfTime = true;
         displayResults();
     } else {
@@ -79,42 +104,7 @@ function countingDown (){
     timeleft -= 1;
     };
 
-
-function openingScreen() {
-    $("#results-container, #question-container").hide();
-    $("#startGame-btn").on("click", function () {
-        gameStart();
-    })
-}
-
-openingScreen();
-
-function gameStart () {
-    $("#openingScreen, #restart-btn").hide();
-    $("#finalResults").empty().hide();
-    questionNumber = 0;
-    numCorrect = 0;
-    numIncorrect = 0;
-    numUnanswered = 0;
-    createQuestions();
-    gameStarted = true;
-    timeleft = 10;
-}
-
-$("#answer-choices").on("click", ".answerChoice", function () {
-    questionAnswered = true;
-    $this = $(this);
-    if ($this.attr("id") == correctAnswer) {
-        numCorrect++;
-        answeredCorrectly = true;
-    }
-    else {
-        numIncorrect++;
-    }
-    displayResults();
-    timeleft = 10;
-})
-
+// notifies the user whether they answered correctly, incorrectly, or ran out of time
 function displayResults () {
     if (gameStarted) {
         $("#results-container, #timer-container").show();
@@ -134,12 +124,47 @@ function displayResults () {
     }
 }
 
+// goes to next question
 function nextQuestion () {
     questionNumber++;
     $("#results-container").hide();
     $("#question-container").show();
 }
 
+// notifies user of their stats after the game has finished
+function gameOver () {
+    $("#finalResults").show().empty().append("Answered correctly: " + numCorrect + 
+            "<br>Answered incorrectly: " + numIncorrect + "<br>Unanswered questions: " + numUnanswered);
+    $("#userResults").hide()
+    restartGame();
+}
+
+// displays button to restart game
+function restartGame () {
+    $("#restart-btn").show();
+    $("#nextQuestion-btn").hide();
+}
+
+// USER GAME PLAY: 
+
+openingScreen();
+
+// determines whether the user has chosen the correct answer choice 
+$("#answer-choices").on("click", ".answerChoice", function () {
+    questionAnswered = true;
+    $this = $(this);
+    if ($this.attr("id") == correctAnswer) {
+        numCorrect++;
+        answeredCorrectly = true;
+    }
+    else {
+        numIncorrect++;
+    }
+    displayResults();
+    timeleft = 10;
+})
+
+// moves on to the next question after user input
 $("#nextQuestion-btn").on("click", function () {
     console.log(questionNumber);
     if (questionNumber == 4) {
@@ -150,18 +175,6 @@ $("#nextQuestion-btn").on("click", function () {
         createQuestions();
     }
 });
-
-function gameOver () {
-    $("#finalResults").show().empty().append("Answered correctly: " + numCorrect + 
-            "<br>Answered incorrectly: " + numIncorrect + "<br>Unanswered questions: " + numUnanswered);
-    $("#userResults").hide()
-    restartGame();
-}
-
-function restartGame () {
-    $("#restart-btn").show();
-    $("#nextQuestion-btn").hide();
-}
 
 // restart game after restart button has been clicked
 $("#restart-btn").on("click", function (){
