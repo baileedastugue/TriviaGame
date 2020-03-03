@@ -8,30 +8,37 @@
     <link rel="stylesheet" type="text/css" href="assets/CSS/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/CSS/base.css">
-    <!-- <link rel="stylesheet" type="text/css" href="assets/CSS/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="assets/CSS/style.css">
 </head>
 <body>
     <div class="container-fluid">
         <div class="container">
-            <div id="openingScreen" class="jumbotron">
-                <h1 class="display-4">The Trivia Game!</h1>
-                <p>Think you're in the top 1% of Billy Joel listeners? Click 'start' to test your trivia knowledge!<br>
-                Answer quickly though, you only have 20 seconds per question to prove your Piano Man saavy.</p>
-                <button id="startGame-btn">Start Game</button>
-            </div>
-            <div id="results-container">
-                <div id="userResults"></div>
-                <div id="finalResults"></div>
-                <button id=nextQuestion-btn>Next Question</button>
-                <button id=restart-btn>Restart Game</button>
-            </div>
-            <div id="question-container">
-                <div id="timer-container"></div>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 0%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                <div id="full-question"></div>
-                <div id="answer-choices"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="assets/images/header.jpeg" id="header">
+                </div>
+                <div class="col-md-6" id="game-container">
+                    <div id="openingScreen" class="jumbotron">
+                        <h1 class="display-4">The Trivia Game!</h1>
+                        <p>Think you're in the top 1% of Billy Joel listeners? Click 'start' to test your trivia knowledge!<br>
+                        Answer quickly though, you only have 20 seconds per question to prove your Piano Man saavy.</p>
+                        <button id="startGame-btn">Start Game</button>
+                    </div>
+                    <div id="results-container">
+                        <div id="userResults"></div>
+                        <div id="finalResults"></div>
+                        <button id=nextQuestion-btn>Next Question</button>
+                        <button id=restart-btn>Restart Game</button>
+                    </div>
+                    <div id="question-container">
+                        <div id="timer-container"></div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 0%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div id="full-question"></div>
+                        <div id="answer-choices"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
