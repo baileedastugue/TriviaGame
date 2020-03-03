@@ -36,6 +36,7 @@ var numIncorrect = 0;
 var numUnanswered = 0;
 var answeredCorrectly = false;
 var questionAnswered = false;
+var gameStarted = false;
 var $this;
 var correctAnswer;
 var outOfTime = false;
@@ -90,11 +91,14 @@ openingScreen();
 
 function gameStart () {
     $("#openingScreen, #restart-btn").hide();
+    $("#finalResults").empty().hide();
     questionNumber = 0;
     numCorrect = 0;
     numIncorrect = 0;
     numUnanswered = 0;
     createQuestions();
+    gameStarted = true;
+    timeleft = 10;
 }
 
 $("#answer-choices").on("click", ".answerChoice", function () {
@@ -112,20 +116,22 @@ $("#answer-choices").on("click", ".answerChoice", function () {
 })
 
 function displayResults () {
-    $("#results-container").show();
-    $("#userResults").empty();
-    if (answeredCorrectly) {
-        $("#userResults").text("You answered " + correctAnswer);
+    if (gameStarted) {
+        $("#results-container, #timer-container").show();
+        $("#userResults").empty().show();
+        if (answeredCorrectly) {
+            $("#userResults").text("You answered " + correctAnswer);
+        }
+        else if (outOfTime) {
+            $("#timer-container").hide();
+            $("#userResults").text("You ran out of time! The correct answer is " + correctAnswer);
+        }
+        else {
+            $("#userResults").text("You answered " + $this.attr("id") + ", but the correct answer is " + correctAnswer);
+        }
+        $("#question-container").hide();
+        $("#nextQuestion-btn").show();
     }
-    else if (outOfTime) {
-        $("#timer-container").hide();
-        $("#userResults").text("You ran out of time! The correct answer is " + correctAnswer);
-    }
-    else {
-        $("#userResults").text("You answered " + $this.attr("id") + ", but the correct answer is " + correctAnswer);
-    }
-    $("#question-container").hide();
-    $("#nextQuestion-btn").show();
 }
 
 function nextQuestion () {
@@ -135,7 +141,8 @@ function nextQuestion () {
 }
 
 $("#nextQuestion-btn").on("click", function () {
-    if (questionNumber == 5) {
+    console.log(questionNumber);
+    if (questionNumber == 4) {
         gameOver();
     }
     else {
@@ -145,8 +152,9 @@ $("#nextQuestion-btn").on("click", function () {
 });
 
 function gameOver () {
-    $("#userResults").show().empty().append("Answered correctly: " + numCorrect + 
-            "<br>Answered incorrectly: " + numIncorrect + "<br>Unanswered questions: " + numUnanswered)
+    $("#finalResults").show().empty().append("Answered correctly: " + numCorrect + 
+            "<br>Answered incorrectly: " + numIncorrect + "<br>Unanswered questions: " + numUnanswered);
+    $("#userResults").hide()
     restartGame();
 }
 
