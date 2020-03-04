@@ -137,7 +137,7 @@ function displayResults () {
         $("#nextQuestion-btn").show();
         clearInterval(timerID);
         timeleft = 20;
-        $("#video-container").show().append('<br><iframe width="470" height="315" src=' + questionArray[questionNumber].forResults + 'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+        $("#video-container").empty().show().append('<br><iframe width="470" height="315" src=' + questionArray[questionNumber].forResults + 'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
     }
 }
 
