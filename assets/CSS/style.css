@@ -2,6 +2,20 @@
     box-sizing: border-box;
 }
 
+h1.display-4 {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+#correct, #incorrect {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2em;
+    color: #C52E3D;
+}
+
+div {
+    font-family: 'Open Sans', sans-serif;
+}
+
 img#header {
     justify-content: center;
     height: 800px;
@@ -41,10 +55,10 @@ body {
     position:absolute;
 }
 
-.responsive {
+/* .responsive {
     width: auto;
     height: 100%;
-}
+} */
 
 #content {
     position: relative;
@@ -83,9 +97,4 @@ body {
         color: white;
         opacity: 100%;
     }
-
-    .responsive {
-        max-width: 100%;
-        height: auto;
-      }
 } 

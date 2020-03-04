@@ -81,7 +81,6 @@ function gameStart () {
 
 // displays time remaining on page, determines whether user answered within the time limit
 function countingDown (){
-    $("#timer-container").empty();
     if(timeleft <= 0){
         clearInterval(timerID);
         outOfTime = true;
@@ -185,6 +184,7 @@ $("#answer-choices").on("click", ".answerChoice", function () {
 
 // moves on to the next question after user input
 $("#nextQuestion-btn").on("click", function () {
+    $("#timer-container").empty();
     if (questionNumber == 4) {
         displayingFinalResults = true;
         gameOver();
