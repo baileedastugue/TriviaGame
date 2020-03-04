@@ -12,28 +12,28 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Oswald&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="container">
+        <div class="container" id="content">
             <div class="row">
-                <div class="col-md-6">
-                    <img src="assets/images/header.jpeg" id="header">
+                <div class="col-lg-6">
+                    <img src="assets/images/header.jpeg" class="img-fluid" id="header">
                 </div>
-                <div class="col-md-6" id="game-container">
+                <div class="col-lg-6" id="game-container">
                     <div id="openingScreen" class="jumbotron">
                         <h1 class="display-4">The Trivia Game!</h1>
-                        <p>Think you're in the top 1% of Billy Joel listeners? Click 'start' to test your trivia knowledge!<br>
+                        <p>Think you're in the top 1% of Billy Joel listeners? Click below to test your trivia knowledge!<br>
                         Answer quickly though, you only have 20 seconds per question to prove you're Piano Man saavy.</p>
                         <button id="startGame-btn" class="btn btn-lg btn-block btn-danger">Start Game</button>
                     </div>
-                    <div id="results-container">
+                    <div id="results-container" class="jumbotron">
                         <div id="correct">Correct!</div>
                         <div id="incorrect">Maybe next time...</div>
                         <div id="userResults"></div>
+                        <div id="video-container" class="video-responsive"></div>
                         <div id="finalResults"></div>
                         <button id="nextQuestion-btn" class="btn btn-lg btn-block btn-dark">Next Question</button>
                         <button id="restart-btn" class="btn btn-lg btn-block btn-danger">Restart Game</button>
                     </div>
-                    <div id="question-container">
+                    <div id="question-container" class="jumbotron">
                         <div id="timer-container"></div><br>
                         
                         <div id="full-question"></div><br>
@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    <div id="background"></div>
 </body>
 <script type="text/javascript" src="assets/javascript/game.js"></script>
 </html>

@@ -135,7 +135,8 @@ function displayResults () {
         }
         $("#question-container").hide();
         $("#nextQuestion-btn").show();
-        $("#userResults").append('<br><iframe width="560" height="315" src=' + questionArray[questionNumber].forResults + 'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
+        $("#video-container").append('<br><iframe width="470" height="315" src=' + questionArray[questionNumber].forResults + 'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+        // $("#userResults").addClass("video-responsive");
     }
 }
 
