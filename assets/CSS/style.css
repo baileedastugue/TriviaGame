@@ -83,4 +83,9 @@ body {
         color: white;
         opacity: 100%;
     }
+
+    .responsive {
+        max-width: 100%;
+        height: auto;
+      }
 } 

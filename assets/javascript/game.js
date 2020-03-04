@@ -38,10 +38,9 @@ var questionArray = [question1, question2, question3, question4, question5];
 
 // booleans to direct game play flow
 var answeredCorrectly = false;
-var questionAnswered = false;
 var gameStarted = false;
 var outOfTime = false;
-var displayingResults = false;
+var displayingFinalResults = false;
 
 // global variables
 var questionNumber = 0;
@@ -49,7 +48,7 @@ var numCorrect = 0;
 var numIncorrect = 0;
 var numUnanswered = 0;
 var timeleft = 20;
-var timerID = setInterval(countingDown, 1000);
+var timerID;
 var currentQuestion;
 var $this;
 var correctAnswer;
@@ -76,13 +75,28 @@ function gameStart () {
     numUnanswered = 0;
     createQuestions();
     gameStarted = true;
-    displayingResults = false;
+    displayingFinalResults = false;
     timeleft = 20;
 }
+
+// displays time remaining on page, determines whether user answered within the time limit
+function countingDown (){
+    $("#timer-container").empty();
+    if(timeleft <= 0){
+        clearInterval(timerID);
+        outOfTime = true;
+        displayResults();
+    } else {
+        $("#timer-container").html(timeleft + " seconds remaining");
+    }
+    timeleft -= 1;
+};
 
 // function that creates the questions + buttons for each question
 function createQuestions () {
     $("#question-container").show();
+    timerID = setInterval(countingDown, 1000);
+    $("#timer-container").show();
     answeredCorrectly = false;
     // creates questions based on what the question number is
     currentQuestion = questionArray[questionNumber];
@@ -102,31 +116,18 @@ function createQuestions () {
     correctAnswer = currentQuestion.answerChoices[currentQuestion.correctAnswer];
 }
 
-// displays time remaining on page, determines whether user answered within the time limit
-function countingDown (){
-    $("#timer-container").empty();
-    if(timeleft <= 0){
-        clearInterval(timerID);
-        outOfTime = true;
-        displayResults();
-    } else {
-        $("#timer-container").html(timeleft + " seconds remaining");
-    }
-    timeleft -= 1;
-    };
-
 // notifies the user whether they answered correctly, incorrectly, or ran out of time
 function displayResults () {
     $("#incorrect, #correct").hide();
-    if (gameStarted && !displayingResults) {
-        $("#results-container, #timer-container").show();
+    if (gameStarted && !displayingFinalResults) {
+        $("#results-container").show();
         $("#userResults").empty().show();
         if (answeredCorrectly) {
             $("#userResults").text("You answered " + correctAnswer);
             $("#correct").show();
         }
         else if (outOfTime) {
-            $("#timer-container").hide();
+            numUnanswered++;
             $("#userResults").text("You ran out of time! The correct answer is " + correctAnswer);
         }
         else {
@@ -135,13 +136,15 @@ function displayResults () {
         }
         $("#question-container").hide();
         $("#nextQuestion-btn").show();
-        $("#video-container").append('<br><iframe width="470" height="315" src=' + questionArray[questionNumber].forResults + 'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-        // $("#userResults").addClass("video-responsive");
+        clearInterval(timerID);
+        timeleft = 20;
+        $("#video-container").show().append('<br><iframe width="470" height="315" src=' + questionArray[questionNumber].forResults + 'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
     }
 }
 
 // goes to next question
 function nextQuestion () {
+    outOfTime = false;
     questionNumber++;
     progessWidth += 20;
     $(".progress-bar").css({"width": progessWidth +"%"});
@@ -169,7 +172,6 @@ openingScreen();
 
 // determines whether the user has chosen the correct answer choice 
 $("#answer-choices").on("click", ".answerChoice", function () {
-    questionAnswered = true;
     $this = $(this);
     if ($this.attr("id") == correctAnswer) {
         numCorrect++;
@@ -179,14 +181,12 @@ $("#answer-choices").on("click", ".answerChoice", function () {
         numIncorrect++;
     }
     displayResults();
-    timeleft = 20;
 })
 
 // moves on to the next question after user input
 $("#nextQuestion-btn").on("click", function () {
-    console.log(questionNumber);
     if (questionNumber == 4) {
-        displayingResults = true;
+        displayingFinalResults = true;
         gameOver();
         $("#incorrect, #correct").hide();
     }
