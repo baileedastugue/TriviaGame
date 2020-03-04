@@ -60,7 +60,7 @@ body {
         padding: 0px;   
         width: 100%;
         display: block; 
-        /* height: 50%;
+        /* height: 50%; */
     }
 
     /* .header {
@@ -70,13 +70,13 @@ body {
         padding-bottom: 0px;
     } */
 
-    /* body {
+    body {
         background-color: white;
     }
 
-    #game-container {
+    /* #game-container {
         margin-top: 0px;
-    } */
+    }  */
 
     /* .container {
         margin-top: 0px;

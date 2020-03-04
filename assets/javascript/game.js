@@ -151,9 +151,9 @@ function nextQuestion () {
 
 // notifies user of their stats after the game has finished
 function gameOver () {
-    $("#finalResults").show().empty().append("Answered correctly: " + numCorrect + 
+    $("#finalResults").show().empty().append("<h1 class='display-4'>Final Results:</h1>Answered correctly: " + numCorrect + 
             "<br>Answered incorrectly: " + numIncorrect + "<br>Unanswered questions: " + numUnanswered);
-    $("#userResults").hide()
+    $("#userResults, #video-container").hide()
     restartGame();
 }
 
