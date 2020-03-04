@@ -18,7 +18,8 @@ div {
 
 img#header {
     justify-content: center;
-    height: 800px;
+    max-height: 800px; 
+    padding-right: 30%;
 }
 
 #game-container {
@@ -73,13 +74,15 @@ body {
 }
 
 @media (max-width: 991px) {
-    img#header { 
+    img { 
         transform: rotate(90deg);
         position: relative;
-        top: -150px;
-        margin: 0% 20%;
+        top: -100px;
+        margin: 0% 50%;
         padding: 0px;   
         display: block; 
+        width: 50%;
+        overflow: auto;
     }
 
     body {
@@ -87,9 +90,9 @@ body {
     }
 
     #game-container {
-        margin-top: 10px;
+        margin-top: 10%;
         position: relative;
-        top: -340px;   
+        top: -300px;   
     } 
 
     .jumbotron {
@@ -98,3 +101,29 @@ body {
         opacity: 100%;
     }
 } 
+
+@media (max-width: 768px) {
+    img {
+        margin: 15% 50% 10% 50%;
+    }
+
+    .jumbotron {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    img {
+        margin: 15% 50% 20% 50%;
+    }
+}
+
+@media (max-width: 408px) {
+    img {
+        margin: 15% 50% 40% 50%;
+    }
+
+    .jumbotron {
+        padding:10px;
+    }
+}
