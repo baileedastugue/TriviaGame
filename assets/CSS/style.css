@@ -8,7 +8,7 @@ img#header {
 }
 
 #game-container {
-    margin-top: 200px;
+    margin-top: 15%;
 }
 
 body {
@@ -41,6 +41,11 @@ body {
     position:absolute;
 }
 
+.responsive {
+    width: auto;
+    height: 100%;
+}
+
 #content {
     position: relative;
     z-index: 2;
@@ -49,39 +54,33 @@ body {
 .jumbotron {
     background-color: white;
     opacity: 90%;
+    height: fit-content;
+    padding: 40px;
 }
 
 @media (max-width: 991px) {
     img#header { 
         transform: rotate(90deg);
-        position: absolute;
-        top: 0px;
-        margin: 0px;
+        position: relative;
+        top: -150px;
+        margin: 0% 20%;
         padding: 0px;   
-        width: 100%;
         display: block; 
-        /* height: 50%; */
     }
-
-    /* .header {
-        margin-top: 0px;
-        margin-bottom: 0px;
-        padding-top: 0px;
-        padding-bottom: 0px;
-    } */
 
     body {
         background-color: white;
     }
 
-    /* #game-container {
-        margin-top: 0px;
-    }  */
+    #game-container {
+        margin-top: 10px;
+        position: relative;
+        top: -340px;   
+    } 
 
-    /* .container {
-        margin-top: 0px;
-        margin-bottom: 0px;
-        padding-top: 0px;
-        padding-bottom: 0px;
-    } */
+    .jumbotron {
+        background-color: black;
+        color: white;
+        opacity: 100%;
+    }
 } 

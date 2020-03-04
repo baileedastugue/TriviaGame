@@ -14,17 +14,17 @@
 <body>
         <div class="container" id="content">
             <div class="row">
-                <div class="col-lg-6">
-                    <img src="assets/images/header.jpeg" class="img-fluid" id="header">
+                <div class="col-lg-7 col-md-12">
+                    <img src="assets/images/header.jpeg" class="responsive" id="header">
                 </div>
-                <div class="col-lg-6" id="game-container">
-                    <div id="openingScreen" class="jumbotron">
+                <div class="col-lg-5 col-md-12 jumbotron" id="game-container">
+                    <div id="openingScreen">
                         <h1 class="display-4">The Trivia Game!</h1>
                         <p>Think you're in the top 1% of Billy Joel listeners? Click below to test your trivia knowledge!<br>
                         Answer quickly though, you only have 20 seconds per question to prove you're Piano Man saavy.</p>
                         <button id="startGame-btn" class="btn btn-lg btn-block btn-danger">Start Game</button>
                     </div>
-                    <div id="results-container" class="jumbotron">
+                    <div id="results-container">
                         <div id="correct">Correct!</div>
                         <div id="incorrect">Maybe next time...</div>
                         <div id="userResults"></div>
@@ -33,7 +33,7 @@
                         <button id="nextQuestion-btn" class="btn btn-lg btn-block btn-dark">Next Question</button>
                         <button id="restart-btn" class="btn btn-lg btn-block btn-danger">Restart Game</button>
                     </div>
-                    <div id="question-container" class="jumbotron">
+                    <div id="question-container">
                         <div id="timer-container"></div><br>
                         
                         <div id="full-question"></div><br>
