@@ -62,6 +62,19 @@ function openingScreen() {
     })
 }
 
+// displays time remaining on page, determines whether user answered within the time limit
+function countingDown (){
+    if(timeleft <= 0){
+        clearInterval(timerID);
+        outOfTime = true;
+        displayResults();
+        $("#timer-container").empty();  
+    } else {
+        $("#timer-container").html(timeleft + " seconds remaining");
+    }
+    timeleft -= 1;
+};
+
 // sets game up, starts questions at 0, clears results
 function gameStart () {
     $("#openingScreen, #restart-btn").hide();
@@ -73,29 +86,17 @@ function gameStart () {
     numCorrect = 0;
     numIncorrect = 0;
     numUnanswered = 0;
-    createQuestions();
     gameStarted = true;
     displayingFinalResults = false;
     timeleft = 20;
+    createQuestions();
+    // startTimer();
 }
 
-// displays time remaining on page, determines whether user answered within the time limit
-function countingDown (){
-    if(timeleft <= 0){
-        clearInterval(timerID);
-        outOfTime = true;
-        displayResults();
-    } else {
-        $("#timer-container").html(timeleft + " seconds remaining");
-    }
-    timeleft -= 1;
-};
-
 // function that creates the questions + buttons for each question
-function createQuestions () {
-    $("#question-container").show();
+function createQuestions () { 
     timerID = setInterval(countingDown, 1000);
-    $("#timer-container").show();
+    $("#question-container").show();
     answeredCorrectly = false;
     // creates questions based on what the question number is
     currentQuestion = questionArray[questionNumber];
